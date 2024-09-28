@@ -21,6 +21,8 @@ public class AddressEntity {
     private String number;
     private String adjunct;
 
+    public AddressEntity() {}
+
     public AddressEntity(String street, String district, String postalCode, String city, String uf, String number, String adjunct) {
         this.street = street;
         this.district = district;

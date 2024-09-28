@@ -12,7 +12,7 @@ public class CreateDoctor {
     }
 
     public Doctor createDoctor(Doctor doctor) {
-        return repository.createDoctor(doctor);
+        return this.repository.createDoctor(doctor);
     }
 
 }

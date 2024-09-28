@@ -5,6 +5,7 @@ import med.voll.api.domain.entities.Doctor;
 import med.voll.api.infra.persistence.DoctorEntity;
 import med.voll.api.infra.persistence.MedicoRepository;
 
+import java.util.Comparator;
 import java.util.List;
 
 public class DoctorJpaRepository implements DoctorRepository {
@@ -25,8 +26,13 @@ public class DoctorJpaRepository implements DoctorRepository {
     }
 
     @Override
-    public List<Doctor> ListAllDoctors() {
-        return null;
+    public List<Doctor> ListAllDoctors(int page) {
+        int size = 10;
+        return repository.findAll().stream()
+                .sorted(Comparator.comparing(DoctorEntity::getName))
+                .skip(page * size)
+                .limit(size)
+                .map(mapper::toDomain).toList();
     }
 
     @Override

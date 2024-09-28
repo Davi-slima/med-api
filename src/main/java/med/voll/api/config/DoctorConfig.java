@@ -2,6 +2,7 @@ package med.voll.api.config;
 
 import med.voll.api.domain.application.gateway.DoctorRepository;
 import med.voll.api.domain.application.usecases.CreateDoctor;
+import med.voll.api.domain.application.usecases.ListDoctor;
 import med.voll.api.infra.gateways.DoctorJpaRepository;
 import med.voll.api.infra.gateways.DoctorMapper;
 import med.voll.api.infra.persistence.MedicoRepository;
@@ -16,7 +17,6 @@ public class DoctorConfig {
         return new CreateDoctor(repository);
     }
 
-
     @Bean
     DoctorJpaRepository doctorJpaRepository(MedicoRepository repository, DoctorMapper mapper){
         return new DoctorJpaRepository(repository, mapper);
@@ -25,6 +25,11 @@ public class DoctorConfig {
     @Bean
     DoctorMapper doctorMapper() {
         return new DoctorMapper();
+    }
+
+    @Bean
+    ListDoctor listDoctor(DoctorRepository repository) {
+        return new ListDoctor(repository);
     }
 
 }

@@ -23,6 +23,8 @@ public class DoctorEntity {
     @JoinColumn(name = "address_id", referencedColumnName = "id")
     private AddressEntity address;
 
+    public DoctorEntity() {}
+
     public DoctorEntity(String name, String email, String crm, Specialty specialty, AddressEntity address) {
         this.name = name;
         this.email = email;

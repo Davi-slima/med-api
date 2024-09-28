@@ -8,7 +8,7 @@ public interface DoctorRepository {
 
     Doctor createDoctor(Doctor doctor);
 
-    List<Doctor> ListAllDoctors();
+    List<Doctor> ListAllDoctors(int page);
 
     Doctor UpdateDoctor(String crm, Doctor doctor);
 
