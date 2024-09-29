@@ -2,6 +2,7 @@ package med.voll.api.config;
 
 import med.voll.api.domain.application.gateway.DoctorRepository;
 import med.voll.api.domain.application.usecases.CreateDoctor;
+import med.voll.api.domain.application.usecases.DeleteDoctor;
 import med.voll.api.domain.application.usecases.ListDoctor;
 import med.voll.api.domain.application.usecases.UpdateDoctor;
 import med.voll.api.infra.gateways.DoctorJpaRepository;
@@ -38,4 +39,8 @@ public class DoctorConfig {
         return new UpdateDoctor(repository);
     }
 
+    @Bean
+    DeleteDoctor deleteDoctor(DoctorRepository repository) {
+        return new DeleteDoctor(repository);
+    }
 }

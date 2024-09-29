@@ -11,6 +11,7 @@ public record DoctorDTO(
         String phoneNumber,
         String crm,
         Specialty specialty,
-        Address address
+        Address address,
+        boolean active
 ) {
 }

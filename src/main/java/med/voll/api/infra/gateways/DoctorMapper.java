@@ -10,13 +10,13 @@ public class DoctorMapper {
     public DoctorEntity toEntity(Doctor doctor) {
         return new DoctorEntity(
                 doctor.getName(), doctor.getEmail(), doctor.getPhoneNumber(), doctor.getCrm(),
-                doctor.getSpecialty(), toAddressEntity(doctor.getAddress()));
+                doctor.getSpecialty(), toAddressEntity(doctor.getAddress()), doctor.isActive());
     }
 
     public Doctor toDomain(DoctorEntity entity) {
         return new Doctor(
                 entity.getName(), entity.getEmail(), entity.getPhoneNumber(), entity.getCrm(),
-                entity.getSpecialty(), toAddressDomain(entity.getAddress()));
+                entity.getSpecialty(), toAddressDomain(entity.getAddress()), entity.isActive());
     }
 
     private Address toAddressDomain(AddressEntity entity) {

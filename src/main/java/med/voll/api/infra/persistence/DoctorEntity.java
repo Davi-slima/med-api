@@ -19,6 +19,7 @@ public class DoctorEntity {
     private String phoneNumber;
     private String crm;
     private Specialty specialty;
+    private  boolean active;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "address_id", referencedColumnName = "id")
@@ -26,12 +27,13 @@ public class DoctorEntity {
 
     public DoctorEntity() {}
 
-    public DoctorEntity(String name, String email, String phoneNumber, String crm, Specialty specialty, AddressEntity address) {
+    public DoctorEntity(String name, String email, String phoneNumber, String crm, Specialty specialty, AddressEntity address, boolean active) {
         this.name = name;
         this.email = email;
         this.phoneNumber = phoneNumber;
         this.crm = crm;
         this.specialty = specialty;
         this.address = address;
+        this.active = active;
     }
 }

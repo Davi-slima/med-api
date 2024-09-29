@@ -32,7 +32,9 @@ public class DoctorJpaRepository implements DoctorRepository {
                 .sorted(Comparator.comparing(DoctorEntity::getName))
                 .skip(page * size)
                 .limit(size)
-                .map(mapper::toDomain).toList();
+                .map(mapper::toDomain)
+                .filter(Doctor::isActive)
+                .toList();
     }
 
     @Override
@@ -51,7 +53,10 @@ public class DoctorJpaRepository implements DoctorRepository {
 
     @Override
     public void deleteDoctor(String crm) {
-
+        DoctorEntity doctorEntity = repository.findByCrm(crm);
+        doctorEntity.setActive(false);
+        repository.save(doctorEntity);
+        mapper.toDomain(doctorEntity);
     }
 
 }
