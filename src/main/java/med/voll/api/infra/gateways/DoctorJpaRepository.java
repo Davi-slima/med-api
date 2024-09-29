@@ -36,7 +36,16 @@ public class DoctorJpaRepository implements DoctorRepository {
     }
 
     @Override
-    public Doctor UpdateDoctor(String crm, Doctor doctor) {
+    public Doctor UpdateDoctor(Doctor doctor) {
+        DoctorEntity entity = repository.findByCrm(doctor.getCrm());
+
+        if (entity != null) {
+            DoctorEntity updateDoctor = mapper.toEntity(doctor);
+            updateDoctor.setId(entity.getId());
+            repository.save(updateDoctor);
+            return mapper.toDomain(updateDoctor);
+        }
+
         return null;
     }
 

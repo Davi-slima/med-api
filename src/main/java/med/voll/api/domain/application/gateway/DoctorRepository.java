@@ -10,7 +10,7 @@ public interface DoctorRepository {
 
     List<Doctor> ListAllDoctors(int page);
 
-    Doctor UpdateDoctor(String crm, Doctor doctor);
+    Doctor UpdateDoctor(Doctor doctor);
 
     void deleteDoctor(String crm);
 

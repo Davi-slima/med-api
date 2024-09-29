@@ -16,6 +16,7 @@ public class DoctorEntity {
     private Long id;
     private String name;
     private String email;
+    private String phoneNumber;
     private String crm;
     private Specialty specialty;
 
@@ -25,9 +26,10 @@ public class DoctorEntity {
 
     public DoctorEntity() {}
 
-    public DoctorEntity(String name, String email, String crm, Specialty specialty, AddressEntity address) {
+    public DoctorEntity(String name, String email, String phoneNumber, String crm, Specialty specialty, AddressEntity address) {
         this.name = name;
         this.email = email;
+        this.phoneNumber = phoneNumber;
         this.crm = crm;
         this.specialty = specialty;
         this.address = address;
