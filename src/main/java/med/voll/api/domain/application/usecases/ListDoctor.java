@@ -14,7 +14,7 @@ public class ListDoctor {
     }
 
     public List<Doctor> listAllDoctors(int page) {
-        return this.repository.ListAllDoctors(page);
+        return this.repository.listAllDoctors(page);
     }
 
 }

@@ -49,7 +49,7 @@ public class DoctorController {
 
     @PutMapping("/{crm}")
     public DoctorDTO updateDoctor(@PathVariable String crm, @RequestBody UpdateDTORequest updateDTORequest) {
-        Doctor doctor = updateDoctor.UpdateDoctor(
+        Doctor doctor = updateDoctor.updateDoctor(
                 new Doctor(updateDTORequest.name(), null, updateDTORequest.phoneNumber(),
                         crm, null, updateDTORequest.address(), true));
         return new DoctorDTO(doctor.getName(), doctor.getEmail(), doctor.getPhoneNumber(),

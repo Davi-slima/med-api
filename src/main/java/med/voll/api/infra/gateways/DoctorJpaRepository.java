@@ -26,7 +26,7 @@ public class DoctorJpaRepository implements DoctorRepository {
     }
 
     @Override
-    public List<Doctor> ListAllDoctors(int page) {
+    public List<Doctor> listAllDoctors(int page) {
         int size = 10;
         return repository.findAll().stream()
                 .sorted(Comparator.comparing(DoctorEntity::getName))
@@ -38,7 +38,7 @@ public class DoctorJpaRepository implements DoctorRepository {
     }
 
     @Override
-    public Doctor UpdateDoctor(Doctor doctor) {
+    public Doctor updateDoctor(Doctor doctor) {
         DoctorEntity entity = repository.findByCrm(doctor.getCrm());
 
         if (entity != null) {

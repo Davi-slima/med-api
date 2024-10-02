@@ -11,7 +11,7 @@ public class UpdateDoctor {
         this.repository = repository;
     }
 
-    public Doctor UpdateDoctor(Doctor doctor) {
-        return this.repository.UpdateDoctor(doctor);
+    public Doctor updateDoctor(Doctor doctor) {
+        return this.repository.updateDoctor(doctor);
     }
 }

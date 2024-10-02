@@ -8,9 +8,9 @@ public interface DoctorRepository {
 
     Doctor createDoctor(Doctor doctor);
 
-    List<Doctor> ListAllDoctors(int page);
+    List<Doctor> listAllDoctors(int page);
 
-    Doctor UpdateDoctor(Doctor doctor);
+    Doctor updateDoctor(Doctor doctor);
 
     void deleteDoctor(String crm);
 
