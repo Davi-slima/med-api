@@ -5,6 +5,7 @@ import med.voll.api.domain.entities.Patient;
 import med.voll.api.infra.persistence.patient.PatientEntity;
 import med.voll.api.infra.persistence.patient.PatientRepository;
 
+import java.util.Comparator;
 import java.util.List;
 
 public class PatientJpaRepository implements PatientGatwayRepository {
@@ -27,7 +28,14 @@ public class PatientJpaRepository implements PatientGatwayRepository {
 
     @Override
     public List<Patient> listAllPatient(int page) {
-        return null;
+        int size = 10;
+
+        return repository.findAll().stream()
+                .sorted(Comparator.comparing(PatientEntity::getName))
+                .skip(page * size)
+                .limit(size)
+                .map(mapper::toDomain)
+                .toList();
     }
 
     @Override

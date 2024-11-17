@@ -2,6 +2,7 @@ package med.voll.api.config;
 
 import med.voll.api.domain.application.gateway.patient.PatientGatwayRepository;
 import med.voll.api.domain.application.usecases.patient.CreatePatient;
+import med.voll.api.domain.application.usecases.patient.ListPatient;
 import med.voll.api.infra.gateways.patient.PatientJpaRepository;
 import med.voll.api.infra.gateways.patient.PatientMapper;
 import med.voll.api.infra.persistence.patient.PatientRepository;
@@ -14,6 +15,11 @@ public class PatientConfig {
     @Bean
     CreatePatient createPatient(PatientGatwayRepository repository) {
         return new CreatePatient(repository);
+    }
+
+    @Bean
+    ListPatient listAllPatient(PatientJpaRepository repository) {
+        return new ListPatient(repository);
     }
 
     @Bean
