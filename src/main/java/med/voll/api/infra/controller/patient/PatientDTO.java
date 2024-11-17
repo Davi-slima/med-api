@@ -9,7 +9,8 @@ public record PatientDTO(
         String email,
         String phoneNumber,
         String cpf,
-        Address address
+        Address address,
+        boolean isActive
 
 ) {
 }

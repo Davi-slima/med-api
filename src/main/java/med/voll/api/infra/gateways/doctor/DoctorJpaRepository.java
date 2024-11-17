@@ -33,7 +33,6 @@ public class DoctorJpaRepository implements DoctorGatwayRepository {
                 .skip(page * size)
                 .limit(size)
                 .map(mapper::toDomain)
-                .filter(Doctor::isActive)
                 .toList();
     }
 

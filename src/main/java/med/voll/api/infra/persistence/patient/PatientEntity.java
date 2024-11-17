@@ -18,6 +18,7 @@ public class PatientEntity {
     private String email;
     private String phoneNumber;
     private String cpf;
+    private  boolean active;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "address_id", referencedColumnName = "id")
@@ -25,12 +26,13 @@ public class PatientEntity {
 
     public PatientEntity() { }
 
-    public PatientEntity(String name, String email, String phoneNumber, String cpf, AddressEntity address) {
+    public PatientEntity(String name, String email, String phoneNumber, String cpf, AddressEntity address, boolean active) {
         this.name = name;
         this.email = email;
         this.phoneNumber = phoneNumber;
         this.cpf = cpf;
         this.address = address;
+        this.active = active;
     }
 
 }

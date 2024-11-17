@@ -9,12 +9,12 @@ public class PatientMapper {
 
     PatientEntity toEntity(Patient patient) {
         return new PatientEntity(patient.getName(), patient.getEmail(), patient.getPhoneNumber(),
-                patient.getCpf(), toAddressEntity(patient.getAddress()));
+                patient.getCpf(), toAddressEntity(patient.getAddress()), patient.isActive());
     }
 
     Patient toDomain(PatientEntity entity) {
         return new Patient(entity.getName(), entity.getEmail(), entity.getPhoneNumber(),
-                entity.getCpf(), toAddressDomain(entity.getAddress()));
+                entity.getCpf(), entity.isActive(), toAddressDomain(entity.getAddress()));
     }
 
     AddressEntity toAddressEntity(Address address) {

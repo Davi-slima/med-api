@@ -54,6 +54,10 @@ public class PatientJpaRepository implements PatientGatwayRepository {
 
     @Override
     public void deletePatient(String cpf) {
+        PatientEntity entity = repository.findByCpf(cpf);
+        entity.setActive(false);
+        repository.save(entity);
+        mapper.toDomain(entity);
 
     }
 

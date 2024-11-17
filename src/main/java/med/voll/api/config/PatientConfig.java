@@ -2,6 +2,7 @@ package med.voll.api.config;
 
 import med.voll.api.domain.application.gateway.patient.PatientGatwayRepository;
 import med.voll.api.domain.application.usecases.patient.CreatePatient;
+import med.voll.api.domain.application.usecases.patient.DeletePatient;
 import med.voll.api.domain.application.usecases.patient.ListPatient;
 import med.voll.api.domain.application.usecases.patient.UpdatePatient;
 import med.voll.api.infra.gateways.patient.PatientJpaRepository;
@@ -26,6 +27,11 @@ public class PatientConfig {
     @Bean
     UpdatePatient updatePatient(PatientGatwayRepository repository) {
         return new UpdatePatient(repository);
+    }
+
+    @Bean
+    DeletePatient deletePatient(PatientGatwayRepository repository) {
+        return new DeletePatient(repository);
     }
 
     @Bean
