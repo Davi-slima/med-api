@@ -1,4 +1,4 @@
-package med.voll.api.infra.controller.doctor;
+package med.voll.api.infra.controller;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import med.voll.api.domain.Address;

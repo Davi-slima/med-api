@@ -40,6 +40,15 @@ public class PatientJpaRepository implements PatientGatwayRepository {
 
     @Override
     public Patient updatePatient(Patient patient) {
+        PatientEntity entity = repository.findByCpf(patient.getCpf());
+
+        if (entity != null) {
+            PatientEntity updatePatient = mapper.toEntity(patient);
+            updatePatient.setId(entity.getId());
+            repository.save(updatePatient);
+            return mapper.toDomain(updatePatient);
+        }
+
         return null;
     }
 

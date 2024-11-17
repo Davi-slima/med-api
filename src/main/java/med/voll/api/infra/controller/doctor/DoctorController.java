@@ -5,6 +5,7 @@ import med.voll.api.domain.application.usecases.doctor.DeleteDoctor;
 import med.voll.api.domain.application.usecases.doctor.ListDoctor;
 import med.voll.api.domain.application.usecases.doctor.UpdateDoctor;
 import med.voll.api.domain.entities.Doctor;
+import med.voll.api.infra.controller.UpdateDTORequest;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
