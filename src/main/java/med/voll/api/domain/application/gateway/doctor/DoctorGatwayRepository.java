@@ -1,10 +1,10 @@
-package med.voll.api.domain.application.gateway;
+package med.voll.api.domain.application.gateway.doctor;
 
 import med.voll.api.domain.entities.Doctor;
 
 import java.util.List;
 
-public interface DoctorRepository {
+public interface DoctorGatwayRepository {
 
     Doctor createDoctor(Doctor doctor);
 

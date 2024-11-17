@@ -1,9 +1,9 @@
-package med.voll.api.infra.controller;
+package med.voll.api.infra.controller.doctor;
 
-import med.voll.api.domain.application.usecases.CreateDoctor;
-import med.voll.api.domain.application.usecases.DeleteDoctor;
-import med.voll.api.domain.application.usecases.ListDoctor;
-import med.voll.api.domain.application.usecases.UpdateDoctor;
+import med.voll.api.domain.application.usecases.doctor.CreateDoctor;
+import med.voll.api.domain.application.usecases.doctor.DeleteDoctor;
+import med.voll.api.domain.application.usecases.doctor.ListDoctor;
+import med.voll.api.domain.application.usecases.doctor.UpdateDoctor;
 import med.voll.api.domain.entities.Doctor;
 import org.springframework.web.bind.annotation.*;
 

@@ -1,9 +1,9 @@
-package med.voll.api.infra.gateways;
+package med.voll.api.infra.gateways.doctor;
 
 import med.voll.api.domain.Address;
 import med.voll.api.domain.entities.Doctor;
 import med.voll.api.infra.persistence.AddressEntity;
-import med.voll.api.infra.persistence.DoctorEntity;
+import med.voll.api.infra.persistence.doctor.DoctorEntity;
 
 public class DoctorMapper {
 

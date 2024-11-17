@@ -1,13 +1,13 @@
 package med.voll.api.config;
 
-import med.voll.api.domain.application.gateway.DoctorRepository;
-import med.voll.api.domain.application.usecases.CreateDoctor;
-import med.voll.api.domain.application.usecases.DeleteDoctor;
-import med.voll.api.domain.application.usecases.ListDoctor;
-import med.voll.api.domain.application.usecases.UpdateDoctor;
-import med.voll.api.infra.gateways.DoctorJpaRepository;
-import med.voll.api.infra.gateways.DoctorMapper;
-import med.voll.api.infra.persistence.MedicoRepository;
+import med.voll.api.domain.application.gateway.doctor.DoctorGatwayRepository;
+import med.voll.api.domain.application.usecases.doctor.CreateDoctor;
+import med.voll.api.domain.application.usecases.doctor.DeleteDoctor;
+import med.voll.api.domain.application.usecases.doctor.ListDoctor;
+import med.voll.api.domain.application.usecases.doctor.UpdateDoctor;
+import med.voll.api.infra.gateways.doctor.DoctorJpaRepository;
+import med.voll.api.infra.gateways.doctor.DoctorMapper;
+import med.voll.api.infra.persistence.doctor.DoctorRepository;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -15,12 +15,12 @@ import org.springframework.context.annotation.Configuration;
 public class DoctorConfig {
 
     @Bean
-    CreateDoctor createDoctor(DoctorRepository repository) {
+    CreateDoctor createDoctor(DoctorGatwayRepository repository) {
         return new CreateDoctor(repository);
     }
 
     @Bean
-    DoctorJpaRepository doctorJpaRepository(MedicoRepository repository, DoctorMapper mapper) {
+    DoctorJpaRepository doctorJpaRepository(DoctorRepository repository, DoctorMapper mapper) {
         return new DoctorJpaRepository(repository, mapper);
     }
 
@@ -30,17 +30,17 @@ public class DoctorConfig {
     }
 
     @Bean
-    ListDoctor listDoctor(DoctorRepository repository) {
+    ListDoctor listDoctor(DoctorGatwayRepository repository) {
         return new ListDoctor(repository);
     }
 
     @Bean
-    UpdateDoctor updateDoctor(DoctorRepository repository) {
+    UpdateDoctor updateDoctor(DoctorGatwayRepository repository) {
         return new UpdateDoctor(repository);
     }
 
     @Bean
-    DeleteDoctor deleteDoctor(DoctorRepository repository) {
+    DeleteDoctor deleteDoctor(DoctorGatwayRepository repository) {
         return new DeleteDoctor(repository);
     }
 }

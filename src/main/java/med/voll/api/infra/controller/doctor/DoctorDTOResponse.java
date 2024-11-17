@@ -1,4 +1,4 @@
-package med.voll.api.infra.controller;
+package med.voll.api.infra.controller.doctor;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Builder;

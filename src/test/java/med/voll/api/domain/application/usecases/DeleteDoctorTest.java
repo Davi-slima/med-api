@@ -1,8 +1,8 @@
 package med.voll.api.domain.application.usecases;
 
 import med.voll.api.domain.Address;
-import med.voll.api.domain.application.gateway.DoctorRepository;
-import med.voll.api.domain.application.usecases.DeleteDoctor;
+import med.voll.api.domain.application.gateway.doctor.DoctorGatwayRepository;
+import med.voll.api.domain.application.usecases.doctor.DeleteDoctor;
 import med.voll.api.domain.entities.Doctor;
 import med.voll.api.enums.Specialty;
 import org.junit.jupiter.api.BeforeEach;
@@ -15,7 +15,7 @@ import org.mockito.MockitoAnnotations;
 public class DeleteDoctorTest {
 
     @Mock
-    private DoctorRepository doctorRepository;
+    private DoctorGatwayRepository doctorGatwayRepository;
 
     @InjectMocks
     private DeleteDoctor deleteDoctor;
@@ -40,7 +40,7 @@ public class DeleteDoctorTest {
 
         deleteDoctor.deleteDoctor(doctor.getCrm());
 
-        Mockito.verify(doctorRepository,
+        Mockito.verify(doctorGatwayRepository,
                 Mockito.times(1)).deleteDoctor(doctor.getCrm());
 
     }

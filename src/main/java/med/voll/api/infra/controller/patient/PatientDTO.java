@@ -1,17 +1,15 @@
-package med.voll.api.infra.controller;
+package med.voll.api.infra.controller.patient;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import med.voll.api.domain.Address;
-import med.voll.api.enums.Specialty;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public record DoctorDTO(
+public record PatientDTO(
         String name,
         String email,
         String phoneNumber,
-        String crm,
-        Specialty specialty,
-        Address address,
-        boolean active
+        String cpf,
+        Address address
+
 ) {
 }

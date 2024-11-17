@@ -1,7 +1,8 @@
 package med.voll.api.domain.application.usecases;
 
 import med.voll.api.domain.Address;
-import med.voll.api.domain.application.gateway.DoctorRepository;
+import med.voll.api.domain.application.gateway.doctor.DoctorGatwayRepository;
+import med.voll.api.domain.application.usecases.doctor.UpdateDoctor;
 import med.voll.api.domain.entities.Doctor;
 import med.voll.api.enums.Specialty;
 import org.junit.jupiter.api.Assertions;
@@ -15,7 +16,7 @@ import org.mockito.MockitoAnnotations;
 public class UpdateDoctorTest {
 
     @Mock
-    private DoctorRepository doctorRepository;
+    private DoctorGatwayRepository doctorGatwayRepository;
 
     @InjectMocks
     private UpdateDoctor updateDoctor;
@@ -37,14 +38,14 @@ public class UpdateDoctorTest {
 
     @Test
     void shouldUpdateDoctorUsinCrm() {
-        Mockito.when(doctorRepository.updateDoctor(Mockito.any())).thenReturn(doctor);
+        Mockito.when(doctorGatwayRepository.updateDoctor(Mockito.any())).thenReturn(doctor);
         Doctor doctorResponse = updateDoctor.updateDoctor(doctor);
 
         Assertions.assertNotNull(updateDoctor);
         Assertions.assertEquals("Júnior Lima", doctorResponse.getName());
         Assertions.assertEquals("12345678", doctorResponse.getCrm());
 
-        Mockito.verify(doctorRepository,
+        Mockito.verify(doctorGatwayRepository,
                 Mockito.times(1)).updateDoctor(doctor);
     }
 

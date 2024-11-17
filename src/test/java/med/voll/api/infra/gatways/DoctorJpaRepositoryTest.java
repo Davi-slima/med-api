@@ -3,10 +3,10 @@ package med.voll.api.infra.gatways;
 import med.voll.api.domain.Address;
 import med.voll.api.domain.entities.Doctor;
 import med.voll.api.enums.Specialty;
-import med.voll.api.infra.gateways.DoctorJpaRepository;
-import med.voll.api.infra.gateways.DoctorMapper;
-import med.voll.api.infra.persistence.DoctorEntity;
-import med.voll.api.infra.persistence.MedicoRepository;
+import med.voll.api.infra.gateways.doctor.DoctorJpaRepository;
+import med.voll.api.infra.gateways.doctor.DoctorMapper;
+import med.voll.api.infra.persistence.doctor.DoctorEntity;
+import med.voll.api.infra.persistence.doctor.DoctorRepository;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -22,7 +22,7 @@ import static org.mockito.Mockito.*;
 public class DoctorJpaRepositoryTest {
 
     @Mock
-    private MedicoRepository repository;
+    private DoctorRepository repository;
 
     @Mock
     private DoctorMapper mapper;

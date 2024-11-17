@@ -2,12 +2,14 @@ package med.voll.api.infra.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import med.voll.api.domain.Address;
-import med.voll.api.domain.application.usecases.CreateDoctor;
-import med.voll.api.domain.application.usecases.DeleteDoctor;
-import med.voll.api.domain.application.usecases.ListDoctor;
-import med.voll.api.domain.application.usecases.UpdateDoctor;
+import med.voll.api.domain.application.usecases.doctor.CreateDoctor;
+import med.voll.api.domain.application.usecases.doctor.DeleteDoctor;
+import med.voll.api.domain.application.usecases.doctor.ListDoctor;
+import med.voll.api.domain.application.usecases.doctor.UpdateDoctor;
 import med.voll.api.domain.entities.Doctor;
 import med.voll.api.enums.Specialty;
+import med.voll.api.infra.controller.doctor.DoctorController;
+import med.voll.api.infra.controller.doctor.DoctorDTO;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;

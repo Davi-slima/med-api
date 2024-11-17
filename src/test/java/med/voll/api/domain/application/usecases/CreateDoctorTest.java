@@ -1,8 +1,8 @@
 package med.voll.api.domain.application.usecases;
 
 import med.voll.api.domain.Address;
-import med.voll.api.domain.application.gateway.DoctorRepository;
-import med.voll.api.domain.application.usecases.CreateDoctor;
+import med.voll.api.domain.application.gateway.doctor.DoctorGatwayRepository;
+import med.voll.api.domain.application.usecases.doctor.CreateDoctor;
 import med.voll.api.domain.entities.Doctor;
 import med.voll.api.enums.Specialty;
 import org.junit.jupiter.api.Assertions;
@@ -16,7 +16,7 @@ import org.mockito.MockitoAnnotations;
 public class CreateDoctorTest {
 
     @Mock
-    private DoctorRepository repository;
+    private DoctorGatwayRepository repository;
 
     @InjectMocks
     private CreateDoctor createDoctor;

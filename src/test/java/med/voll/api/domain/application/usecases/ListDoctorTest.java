@@ -1,7 +1,8 @@
 package med.voll.api.domain.application.usecases;
 
 import med.voll.api.domain.Address;
-import med.voll.api.domain.application.gateway.DoctorRepository;
+import med.voll.api.domain.application.gateway.doctor.DoctorGatwayRepository;
+import med.voll.api.domain.application.usecases.doctor.ListDoctor;
 import med.voll.api.domain.entities.Doctor;
 import med.voll.api.enums.Specialty;
 import org.junit.jupiter.api.Assertions;
@@ -17,7 +18,7 @@ import java.util.List;
 public class ListDoctorTest {
 
     @Mock
-    private DoctorRepository doctorRepository;
+    private DoctorGatwayRepository doctorGatwayRepository;
 
     @InjectMocks
     private ListDoctor listDoctor;
@@ -39,7 +40,7 @@ public class ListDoctorTest {
 
     @Test
     void shouldReturnDoctorList() {
-        Mockito.when(doctorRepository.listAllDoctors(0)).thenReturn(List.of(doctor));
+        Mockito.when(doctorGatwayRepository.listAllDoctors(0)).thenReturn(List.of(doctor));
         List<Doctor> doctors = listDoctor.listAllDoctors(0);
 
         Assertions.assertNotNull(doctors);

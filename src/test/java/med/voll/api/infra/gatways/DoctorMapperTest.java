@@ -3,9 +3,9 @@ package med.voll.api.infra.gatways;
 import med.voll.api.domain.Address;
 import med.voll.api.domain.entities.Doctor;
 import med.voll.api.enums.Specialty;
-import med.voll.api.infra.gateways.DoctorMapper;
+import med.voll.api.infra.gateways.doctor.DoctorMapper;
 import med.voll.api.infra.persistence.AddressEntity;
-import med.voll.api.infra.persistence.DoctorEntity;
+import med.voll.api.infra.persistence.doctor.DoctorEntity;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
