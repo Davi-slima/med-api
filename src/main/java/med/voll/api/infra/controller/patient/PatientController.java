@@ -7,7 +7,14 @@ import med.voll.api.domain.application.usecases.patient.ListPatient;
 import med.voll.api.domain.application.usecases.patient.UpdatePatient;
 import med.voll.api.domain.entities.Patient;
 import med.voll.api.infra.controller.UpdateDTORequest;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("pacientes")
@@ -26,32 +33,26 @@ public class PatientController {
     }
 
     @PostMapping
-    public PatientDTO cadastroPaciente(@RequestBody PatientDTO dto) {
-        Patient patient = createPatient.createPatient(new Patient(dto.name(),
+    public ResponseEntity<Void> cadastroPaciente(@RequestBody PatientDTO dto) {
+        createPatient.createPatient(new Patient(dto.name(),
                 dto.email(), dto.phoneNumber(), dto.cpf(), true, dto.address()));
-
-        return new PatientDTO(patient.getName(), patient.getEmail(),
-                dto.phoneNumber(), patient.getCpf(), patient.getAddress(), patient.isActive());
+        return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
     @GetMapping
-    public PatientDTOResponse listarPacientes(@RequestParam(defaultValue = "0") int page) {
-        return PatientDTOResponse.builder()
-                .content(listPatient.listAllPatient(page)
-                        .stream()
-                        .map(patient -> new PatientDTO(patient.getName(), patient.getEmail(),
-                                patient.getPhoneNumber(), patient.getCpf(), patient.getAddress(), patient.isActive()))
-                        .toList())
-                .build();
+    public Page<PatientDTO> listarPacientes(@RequestParam(defaultValue = "0") int page) {
+        List<PatientDTO> patientDTOList = listPatient.listAllPatient(page).stream().map(patient -> new PatientDTO(patient.getName(), patient.getEmail(),
+                patient.getPhoneNumber(), patient.getCpf(), null, patient.isActive())).toList();
+
+        return new PageImpl<>(patientDTOList, PageRequest.of(page, 10), listPatient.listAllPatient(page).size());
+
     }
 
     @PutMapping("/{cpf}")
-    public PatientDTO atualizaCadastro(@PathVariable String cpf, @RequestBody UpdateDTORequest request) {
-        Patient patient = updatePatient.updatePatient(new Patient(request.name(), null,
+    public ResponseEntity<Void> atualizaCadastro(@PathVariable String cpf, @RequestBody UpdateDTORequest request) {
+        updatePatient.updatePatient(new Patient(request.name(), null,
                 request.phoneNumber(), cpf, true, request.address()));
-
-        return new PatientDTO(patient.getName(), patient.getEmail(), patient.getPhoneNumber(),
-                patient.getCpf(), patient.getAddress(), patient.isActive());
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 
     @DeleteMapping("/{cpf}")
