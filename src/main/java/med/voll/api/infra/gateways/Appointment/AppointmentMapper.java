@@ -10,11 +10,11 @@ public class AppointmentMapper {
 
     AppointmentEntity toEntity(Appointment appointment, DoctorEntity doctorEntity, PatientEntity patientEntity) {
         return new AppointmentEntity(doctorEntity, patientEntity,
-                appointment.getDateTime(), appointment.getStaus());
+                appointment.getDateTime(), appointment.getStatus());
     }
 
     Appointment toDomain(AppointmentEntity entity) {
         return new Appointment(entity.getAppointmentId(), entity.getDoctor().getId(),
-                entity.getPatient().getId(), entity.getDateTime(), entity.getStaus());
+                entity.getPatient().getId(), entity.getDateTime(), entity.getStatus());
     }
 }

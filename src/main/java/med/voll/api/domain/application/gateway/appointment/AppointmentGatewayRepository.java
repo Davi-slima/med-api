@@ -8,7 +8,7 @@ import java.util.List;
 public interface AppointmentGatewayRepository {
 
     Appointment createAppointment(Appointment appointment) throws ChangeSetPersister.NotFoundException;
-    Appointment endAppointment (Appointment appointment);
+    void endAppointment (Appointment appointment) throws ChangeSetPersister.NotFoundException;
     List<Appointment> listAllAppointment(int page);
     void cancelAppointment(Long id);
 

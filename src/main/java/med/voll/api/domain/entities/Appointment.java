@@ -12,13 +12,13 @@ public class Appointment {
     private Long doctorId;
     private Long patientId;
     private String dateTime;
-    private Status staus;
+    private Status status;
 
-    public Appointment(Long appointmentId, Long doctorId, Long patientId, String dateTime, Status staus) {
+    public Appointment(Long appointmentId, Long doctorId, Long patientId, String dateTime, Status status) {
         this.appointmentId = appointmentId;
         this.doctorId = doctorId;
         this.patientId = patientId;
         this.dateTime = dateTime;
-        this.staus = staus;
+        this.status = status;
     }
 }

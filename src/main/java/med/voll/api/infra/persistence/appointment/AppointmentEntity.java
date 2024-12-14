@@ -27,7 +27,9 @@ public class AppointmentEntity {
 
     private String dateTime;
 
-    private Status staus;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "status")
+    private Status status;
 
     public AppointmentEntity() {
 
@@ -37,6 +39,6 @@ public class AppointmentEntity {
         this.doctor = doctor;
         this.patient = patient;
         this.dateTime = dateTime;
-        this.staus = staus;
+        this.status = staus;
     }
 }

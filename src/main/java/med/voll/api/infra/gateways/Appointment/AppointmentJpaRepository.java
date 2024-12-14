@@ -2,8 +2,6 @@ package med.voll.api.infra.gateways.Appointment;
 
 import med.voll.api.domain.application.gateway.appointment.AppointmentGatewayRepository;
 import med.voll.api.domain.entities.Appointment;
-import med.voll.api.domain.entities.Doctor;
-import med.voll.api.domain.entities.Patient;
 import med.voll.api.enums.Status;
 import med.voll.api.infra.persistence.appointment.AppointmentEntity;
 import med.voll.api.infra.persistence.appointment.AppointmentRepository;
@@ -31,16 +29,10 @@ public class AppointmentJpaRepository implements AppointmentGatewayRepository {
 
     @Override
     public Appointment createAppointment(Appointment appointment) throws ChangeSetPersister.NotFoundException {
+        appointment.setStatus(Status.SCHEDULED);
 
-        DoctorEntity doctorEntity = doctorRepository.findById(appointment.getDoctorId())
-                .orElseThrow(ChangeSetPersister.NotFoundException::new);
-
-        PatientEntity patientEntity = patientRepository.findById(appointment.getPatientId())
-                        .orElseThrow(ChangeSetPersister.NotFoundException::new);
-
-        appointment.setDoctorId(doctorEntity.getId());
-        appointment.setPatientId(patientEntity.getId());
-        appointment.setStaus(Status.SCHEDULED);
+        DoctorEntity doctorEntity = findDoctorEntity(appointment);
+        PatientEntity patientEntity = findPatientEntity(appointment);
 
         AppointmentEntity entity = mapper.toEntity(appointment, doctorEntity, patientEntity);
         repository.save(entity);
@@ -48,8 +40,16 @@ public class AppointmentJpaRepository implements AppointmentGatewayRepository {
     }
 
     @Override
-    public Appointment endAppointment(Appointment appointment) {
-        return null;
+    public void endAppointment(Appointment appointment) throws ChangeSetPersister.NotFoundException {
+        AppointmentEntity appointmentEntity = repository.findById(appointment.getAppointmentId())
+                .orElseThrow(ChangeSetPersister.NotFoundException::new);
+
+        if (!appointmentEntity.getStatus().equals(Status.SCHEDULED)) {
+            throw new IllegalArgumentException("Only scheduled appointments can be finalized.");
+        }
+        appointmentEntity.setStatus(Status.COMPLETED);
+
+        repository.save(appointmentEntity);
     }
 
     @Override
@@ -60,5 +60,15 @@ public class AppointmentJpaRepository implements AppointmentGatewayRepository {
     @Override
     public void cancelAppointment(Long id) {
 
+    }
+
+    private DoctorEntity findDoctorEntity(Appointment appointment) throws ChangeSetPersister.NotFoundException {
+        return doctorRepository.findById(appointment.getDoctorId())
+                .orElseThrow(ChangeSetPersister.NotFoundException::new);
+    }
+
+    private PatientEntity findPatientEntity(Appointment appointment) throws ChangeSetPersister.NotFoundException {
+        return patientRepository.findById(appointment.getPatientId())
+                .orElseThrow(ChangeSetPersister.NotFoundException::new);
     }
 }
