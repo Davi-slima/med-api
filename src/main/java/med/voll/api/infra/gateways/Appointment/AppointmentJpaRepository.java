@@ -11,6 +11,7 @@ import med.voll.api.infra.persistence.patient.PatientEntity;
 import med.voll.api.infra.persistence.patient.PatientRepository;
 import org.springframework.data.crossstore.ChangeSetPersister;
 
+import java.util.Comparator;
 import java.util.List;
 
 public class AppointmentJpaRepository implements AppointmentGatewayRepository {
@@ -54,7 +55,10 @@ public class AppointmentJpaRepository implements AppointmentGatewayRepository {
 
     @Override
     public List<Appointment> listAllAppointment(int page) {
-        return null;
+        return repository.findAll().stream()
+                .sorted(Comparator.comparing(AppointmentEntity::getDateTime))
+                .map(mapper::toDomain)
+                .toList();
     }
 
     @Override

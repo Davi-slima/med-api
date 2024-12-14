@@ -27,11 +27,8 @@ public class DoctorJpaRepository implements DoctorGatewayRepository {
 
     @Override
     public List<Doctor> listAllDoctors(int page) {
-        int size = 10;
         return repository.findAll().stream()
                 .sorted(Comparator.comparing(DoctorEntity::getName))
-                .skip(page * size)
-                .limit(size)
                 .map(mapper::toDomain)
                 .toList();
     }

@@ -28,12 +28,8 @@ public class PatientJpaRepository implements PatientGatewayRepository {
 
     @Override
     public List<Patient> listAllPatient(int page) {
-        int size = 10;
-
         return repository.findAll().stream()
                 .sorted(Comparator.comparing(PatientEntity::getName))
-                .skip(page * size)
-                .limit(size)
                 .map(mapper::toDomain)
                 .toList();
     }
