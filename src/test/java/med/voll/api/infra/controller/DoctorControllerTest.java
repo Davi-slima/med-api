@@ -61,7 +61,7 @@ public class DoctorControllerTest {
         Address address = new Address("xxxx", "yyyy",
                 "09123456", "Osasco", "SP", "10", "xxx");
 
-        doctorDTO = new DoctorDTO("Júnior Lima",
+        doctorDTO = new DoctorDTO(1L,"Júnior Lima",
                 "teste@email.com.br", "11901234567",
                 "12345678", Specialty.DERMATOLOGIA, address, true);
     }
@@ -69,7 +69,7 @@ public class DoctorControllerTest {
     @Test
     void shouldReturCreateDoctor() throws Exception {
 
-        Doctor saveDoctor = new Doctor(doctorDTO.name(), doctorDTO.email(), doctorDTO.phoneNumber(),
+        Doctor saveDoctor = new Doctor(null, doctorDTO.name(), doctorDTO.email(), doctorDTO.phoneNumber(),
                 doctorDTO.crm(), doctorDTO.specialty(), doctorDTO.address(), true);
 
         Mockito.when(createDoctor.createDoctor(Mockito.any(Doctor.class))).thenReturn(saveDoctor);
@@ -77,7 +77,7 @@ public class DoctorControllerTest {
         mockMvc.perform(post("/medicos")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(doctorDTO)))
-                .andExpect(status().isOk())
+                .andExpect(status().isCreated())
                 .andExpect(jsonPath("$.name").value("Júnior Lima"))
                 .andExpect(jsonPath("$.email").value("teste@email.com.br"))
                 .andExpect(jsonPath("$.phoneNumber").value("11901234567"))
@@ -100,7 +100,7 @@ public class DoctorControllerTest {
     @Test
     void shouldReturnListAllDoctors() throws Exception {
         List<Doctor> doctors = List.of(
-                new Doctor(doctorDTO.name(), doctorDTO.email(), doctorDTO.phoneNumber(),
+                new Doctor(1L, doctorDTO.name(), doctorDTO.email(), doctorDTO.phoneNumber(),
                         doctorDTO.crm(), doctorDTO.specialty(), null, true));
 
         Mockito.when(listDoctor.listAllDoctors(Mockito.anyInt())).thenReturn(doctors);
@@ -122,7 +122,7 @@ public class DoctorControllerTest {
     @Test
     void shouldReturUpdatedDoctor() throws Exception {
 
-        Doctor saveDoctor = new Doctor(doctorDTO.name(), doctorDTO.email(), doctorDTO.phoneNumber(),
+        Doctor saveDoctor = new Doctor(1L, doctorDTO.name(), doctorDTO.email(), doctorDTO.phoneNumber(),
                 doctorDTO.crm(), doctorDTO.specialty(), doctorDTO.address(), true);
 
         Mockito.when(updateDoctor.updateDoctor(Mockito.any(Doctor.class))).thenReturn(saveDoctor);
@@ -130,7 +130,7 @@ public class DoctorControllerTest {
         mockMvc.perform(put("/medicos/12345678")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(doctorDTO)))
-                .andExpect(status().isOk())
+                .andExpect(status().isNoContent())
                 .andExpect(jsonPath("$.name").value("Júnior Lima"))
                 .andExpect(jsonPath("$.phoneNumber").value("11901234567"))
                 .andExpect(jsonPath("$.address.street").value("xxxx"))
@@ -148,7 +148,7 @@ public class DoctorControllerTest {
 
     @Test
     void shouldReturnDeletingDoctor() throws Exception {
-        Doctor saveDoctor = new Doctor(doctorDTO.name(), doctorDTO.email(), doctorDTO.phoneNumber(),
+        Doctor saveDoctor = new Doctor(1L, doctorDTO.name(), doctorDTO.email(), doctorDTO.phoneNumber(),
                 doctorDTO.crm(), doctorDTO.specialty(), doctorDTO.address(), true);
 
         mockMvc.perform(delete("/medicos/12345678"))

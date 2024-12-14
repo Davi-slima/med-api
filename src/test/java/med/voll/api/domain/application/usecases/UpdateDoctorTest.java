@@ -1,7 +1,7 @@
 package med.voll.api.domain.application.usecases;
 
 import med.voll.api.domain.Address;
-import med.voll.api.domain.application.gateway.doctor.DoctorGatwayRepository;
+import med.voll.api.domain.application.gateway.doctor.DoctorGatewayRepository;
 import med.voll.api.domain.application.usecases.doctor.UpdateDoctor;
 import med.voll.api.domain.entities.Doctor;
 import med.voll.api.enums.Specialty;
@@ -16,7 +16,7 @@ import org.mockito.MockitoAnnotations;
 public class UpdateDoctorTest {
 
     @Mock
-    private DoctorGatwayRepository doctorGatwayRepository;
+    private DoctorGatewayRepository doctorGatewayRepository;
 
     @InjectMocks
     private UpdateDoctor updateDoctor;
@@ -30,7 +30,7 @@ public class UpdateDoctorTest {
         Address address = new Address("xxxx", "yyyy",
                 "09123456","Osasco","SP", "10", "xxx");
 
-        doctor = new Doctor("Júnior Lima",
+        doctor = new Doctor(1L, "Júnior Lima",
                 "teste@email.com.br", "11901234567",
                 "12345678", Specialty.DERMATOLOGIA, address, true);
 
@@ -38,14 +38,14 @@ public class UpdateDoctorTest {
 
     @Test
     void shouldUpdateDoctorUsinCrm() {
-        Mockito.when(doctorGatwayRepository.updateDoctor(Mockito.any())).thenReturn(doctor);
+        Mockito.when(doctorGatewayRepository.updateDoctor(Mockito.any())).thenReturn(doctor);
         Doctor doctorResponse = updateDoctor.updateDoctor(doctor);
 
         Assertions.assertNotNull(updateDoctor);
         Assertions.assertEquals("Júnior Lima", doctorResponse.getName());
         Assertions.assertEquals("12345678", doctorResponse.getCrm());
 
-        Mockito.verify(doctorGatwayRepository,
+        Mockito.verify(doctorGatewayRepository,
                 Mockito.times(1)).updateDoctor(doctor);
     }
 

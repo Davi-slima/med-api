@@ -1,7 +1,7 @@
 package med.voll.api.domain.application.usecases;
 
 import med.voll.api.domain.Address;
-import med.voll.api.domain.application.gateway.doctor.DoctorGatwayRepository;
+import med.voll.api.domain.application.gateway.doctor.DoctorGatewayRepository;
 import med.voll.api.domain.application.usecases.doctor.CreateDoctor;
 import med.voll.api.domain.entities.Doctor;
 import med.voll.api.enums.Specialty;
@@ -16,7 +16,7 @@ import org.mockito.MockitoAnnotations;
 public class CreateDoctorTest {
 
     @Mock
-    private DoctorGatwayRepository repository;
+    private DoctorGatewayRepository repository;
 
     @InjectMocks
     private CreateDoctor createDoctor;
@@ -30,7 +30,7 @@ public class CreateDoctorTest {
         Address address = new Address("xxxx", "yyyy",
                 "09123456","Osasco","SP", "10", "xxx");
 
-        doctor = new Doctor("Júnior Lima",
+        doctor = new Doctor(null, "Júnior Lima",
                 "teste@email.com.br", "11901234567",
                 "12345678", Specialty.DERMATOLOGIA, address, true);
 

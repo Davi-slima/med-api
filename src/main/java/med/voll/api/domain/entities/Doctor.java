@@ -9,6 +9,7 @@ import med.voll.api.enums.Specialty;
 @Setter
 public class Doctor {
 
+    private Long id;
     private String name;
     private String email;
     private String phoneNumber;
@@ -17,7 +18,8 @@ public class Doctor {
     private Address address;
     private boolean active;
 
-    public Doctor(String name, String email, String phoneNumber, String crm, Specialty specialty, Address address, boolean active) {
+    public Doctor(Long id, String name, String email, String phoneNumber, String crm, Specialty specialty, Address address, boolean active) {
+        this.id = id;
         this.name = name;
         this.email = email;
         this.phoneNumber = phoneNumber;

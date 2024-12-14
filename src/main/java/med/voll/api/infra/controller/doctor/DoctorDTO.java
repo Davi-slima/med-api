@@ -6,6 +6,7 @@ import med.voll.api.enums.Specialty;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public record DoctorDTO(
+        Long id,
         String name,
         String email,
         String phoneNumber,

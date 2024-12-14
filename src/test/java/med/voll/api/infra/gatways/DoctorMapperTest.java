@@ -18,7 +18,7 @@ public class DoctorMapperTest {
         Address address = new Address("xxxx", "yyyy",
                 "09123456", "Osasco", "SP", "10", "xxx");
 
-        Doctor doctor = new Doctor("Júnior Lima",
+        Doctor doctor = new Doctor(1L, "Júnior Lima",
                 "teste@email.com.br", "11901234567",
                 "12345678", Specialty.DERMATOLOGIA, address, true);
 

@@ -14,7 +14,7 @@ public class DoctorMapper {
     }
 
     public Doctor toDomain(DoctorEntity entity) {
-        return new Doctor(
+        return new Doctor(entity.getId(),
                 entity.getName(), entity.getEmail(), entity.getPhoneNumber(), entity.getCrm(),
                 entity.getSpecialty(), toAddressDomain(entity.getAddress()), entity.isActive());
     }

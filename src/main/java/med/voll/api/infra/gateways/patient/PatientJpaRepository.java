@@ -1,6 +1,6 @@
 package med.voll.api.infra.gateways.patient;
 
-import med.voll.api.domain.application.gateway.patient.PatientGatwayRepository;
+import med.voll.api.domain.application.gateway.patient.PatientGatewayRepository;
 import med.voll.api.domain.entities.Patient;
 import med.voll.api.infra.persistence.patient.PatientEntity;
 import med.voll.api.infra.persistence.patient.PatientRepository;
@@ -8,7 +8,7 @@ import med.voll.api.infra.persistence.patient.PatientRepository;
 import java.util.Comparator;
 import java.util.List;
 
-public class PatientJpaRepository implements PatientGatwayRepository {
+public class PatientJpaRepository implements PatientGatewayRepository {
 
     private final PatientRepository repository;
 

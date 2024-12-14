@@ -1,6 +1,6 @@
 package med.voll.api.config;
 
-import med.voll.api.domain.application.gateway.patient.PatientGatwayRepository;
+import med.voll.api.domain.application.gateway.patient.PatientGatewayRepository;
 import med.voll.api.domain.application.usecases.patient.CreatePatient;
 import med.voll.api.domain.application.usecases.patient.DeletePatient;
 import med.voll.api.domain.application.usecases.patient.ListPatient;
@@ -15,22 +15,22 @@ import org.springframework.context.annotation.Configuration;
 public class PatientConfig {
 
     @Bean
-    CreatePatient createPatient(PatientGatwayRepository repository) {
+    CreatePatient createPatient(PatientGatewayRepository repository) {
         return new CreatePatient(repository);
     }
 
     @Bean
-    ListPatient listAllPatient(PatientGatwayRepository repository) {
+    ListPatient listAllPatient(PatientGatewayRepository repository) {
         return new ListPatient(repository);
     }
 
     @Bean
-    UpdatePatient updatePatient(PatientGatwayRepository repository) {
+    UpdatePatient updatePatient(PatientGatewayRepository repository) {
         return new UpdatePatient(repository);
     }
 
     @Bean
-    DeletePatient deletePatient(PatientGatwayRepository repository) {
+    DeletePatient deletePatient(PatientGatewayRepository repository) {
         return new DeletePatient(repository);
     }
 

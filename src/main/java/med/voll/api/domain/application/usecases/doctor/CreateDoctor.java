@@ -1,14 +1,14 @@
 package med.voll.api.domain.application.usecases.doctor;
 
-import med.voll.api.domain.application.gateway.doctor.DoctorGatwayRepository;
+import med.voll.api.domain.application.gateway.doctor.DoctorGatewayRepository;
 import med.voll.api.domain.entities.Doctor;
 
 public class CreateDoctor {
 
-    private final DoctorGatwayRepository repository;
+    private final DoctorGatewayRepository repository;
 
-    public CreateDoctor(DoctorGatwayRepository doctorGatwayRepository) {
-        this.repository = doctorGatwayRepository;
+    public CreateDoctor(DoctorGatewayRepository doctorGatewayRepository) {
+        this.repository = doctorGatewayRepository;
     }
 
     public Doctor createDoctor(Doctor doctor) {

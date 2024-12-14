@@ -1,6 +1,6 @@
 package med.voll.api.config;
 
-import med.voll.api.domain.application.gateway.doctor.DoctorGatwayRepository;
+import med.voll.api.domain.application.gateway.doctor.DoctorGatewayRepository;
 import med.voll.api.domain.application.usecases.doctor.CreateDoctor;
 import med.voll.api.domain.application.usecases.doctor.DeleteDoctor;
 import med.voll.api.domain.application.usecases.doctor.ListDoctor;
@@ -15,7 +15,7 @@ import org.springframework.context.annotation.Configuration;
 public class DoctorConfig {
 
     @Bean
-    CreateDoctor createDoctor(DoctorGatwayRepository repository) {
+    CreateDoctor createDoctor(DoctorGatewayRepository repository) {
         return new CreateDoctor(repository);
     }
 
@@ -30,17 +30,17 @@ public class DoctorConfig {
     }
 
     @Bean
-    ListDoctor listDoctor(DoctorGatwayRepository repository) {
+    ListDoctor listDoctor(DoctorGatewayRepository repository) {
         return new ListDoctor(repository);
     }
 
     @Bean
-    UpdateDoctor updateDoctor(DoctorGatwayRepository repository) {
+    UpdateDoctor updateDoctor(DoctorGatewayRepository repository) {
         return new UpdateDoctor(repository);
     }
 
     @Bean
-    DeleteDoctor deleteDoctor(DoctorGatwayRepository repository) {
+    DeleteDoctor deleteDoctor(DoctorGatewayRepository repository) {
         return new DeleteDoctor(repository);
     }
 }

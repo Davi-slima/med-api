@@ -1,7 +1,7 @@
 package med.voll.api.domain.application.usecases;
 
 import med.voll.api.domain.Address;
-import med.voll.api.domain.application.gateway.doctor.DoctorGatwayRepository;
+import med.voll.api.domain.application.gateway.doctor.DoctorGatewayRepository;
 import med.voll.api.domain.application.usecases.doctor.ListDoctor;
 import med.voll.api.domain.entities.Doctor;
 import med.voll.api.enums.Specialty;
@@ -18,7 +18,7 @@ import java.util.List;
 public class ListDoctorTest {
 
     @Mock
-    private DoctorGatwayRepository doctorGatwayRepository;
+    private DoctorGatewayRepository doctorGatewayRepository;
 
     @InjectMocks
     private ListDoctor listDoctor;
@@ -32,7 +32,7 @@ public class ListDoctorTest {
         Address address = new Address("xxxx", "yyyy",
                 "09123456","Osasco","SP", "10", "xxx");
 
-        doctor = new Doctor("Júnior Lima",
+        doctor = new Doctor(1L, "Júnior Lima",
                 "teste@email.com.br", "11901234567",
                 "12345678", Specialty.DERMATOLOGIA, address, true);
 
@@ -40,7 +40,7 @@ public class ListDoctorTest {
 
     @Test
     void shouldReturnDoctorList() {
-        Mockito.when(doctorGatwayRepository.listAllDoctors(0)).thenReturn(List.of(doctor));
+        Mockito.when(doctorGatewayRepository.listAllDoctors(0)).thenReturn(List.of(doctor));
         List<Doctor> doctors = listDoctor.listAllDoctors(0);
 
         Assertions.assertNotNull(doctors);

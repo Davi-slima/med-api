@@ -4,7 +4,7 @@ import med.voll.api.domain.entities.Patient;
 
 import java.util.List;
 
-public interface PatientGatwayRepository {
+public interface PatientGatewayRepository {
 
     Patient createPatient(Patient patient);
     List<Patient> listAllPatient(int page);

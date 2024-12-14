@@ -5,6 +5,7 @@ import med.voll.api.domain.Address;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public record PatientDTO(
+        Long id,
         String name,
         String email,
         String phoneNumber,

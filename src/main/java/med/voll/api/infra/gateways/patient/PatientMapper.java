@@ -13,7 +13,7 @@ public class PatientMapper {
     }
 
     Patient toDomain(PatientEntity entity) {
-        return new Patient(entity.getName(), entity.getEmail(), entity.getPhoneNumber(),
+        return new Patient(entity.getId(), entity.getName(), entity.getEmail(), entity.getPhoneNumber(),
                 entity.getCpf(), entity.isActive(), toAddressDomain(entity.getAddress()));
     }
 

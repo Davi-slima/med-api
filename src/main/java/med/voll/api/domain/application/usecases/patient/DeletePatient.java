@@ -1,12 +1,12 @@
 package med.voll.api.domain.application.usecases.patient;
 
-import med.voll.api.domain.application.gateway.patient.PatientGatwayRepository;
+import med.voll.api.domain.application.gateway.patient.PatientGatewayRepository;
 
 public class DeletePatient {
 
-    private final PatientGatwayRepository repository;
+    private final PatientGatewayRepository repository;
 
-    public DeletePatient(PatientGatwayRepository repository) {
+    public DeletePatient(PatientGatewayRepository repository) {
         this.repository = repository;
     }
 

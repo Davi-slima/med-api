@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("pacientes")
+@RequestMapping("patients")
 public class PatientController {
 
     private final CreatePatient createPatient;
@@ -34,14 +34,14 @@ public class PatientController {
 
     @PostMapping
     public ResponseEntity<Void> cadastroPaciente(@RequestBody PatientDTO dto) {
-        createPatient.createPatient(new Patient(dto.name(),
+        createPatient.createPatient(new Patient(null, dto.name(),
                 dto.email(), dto.phoneNumber(), dto.cpf(), true, dto.address()));
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
     @GetMapping
     public Page<PatientDTO> listarPacientes(@RequestParam(defaultValue = "0") int page) {
-        List<PatientDTO> patientDTOList = listPatient.listAllPatient(page).stream().map(patient -> new PatientDTO(patient.getName(), patient.getEmail(),
+        List<PatientDTO> patientDTOList = listPatient.listAllPatient(page).stream().map(patient -> new PatientDTO(patient.getId() ,patient.getName(), patient.getEmail(),
                 patient.getPhoneNumber(), patient.getCpf(), null, patient.isActive())).toList();
 
         return new PageImpl<>(patientDTOList, PageRequest.of(page, 10), listPatient.listAllPatient(page).size());
@@ -50,7 +50,7 @@ public class PatientController {
 
     @PutMapping("/{cpf}")
     public ResponseEntity<Void> atualizaCadastro(@PathVariable String cpf, @RequestBody UpdateDTORequest request) {
-        updatePatient.updatePatient(new Patient(request.name(), null,
+        updatePatient.updatePatient(new Patient(null, request.name(), null,
                 request.phoneNumber(), cpf, true, request.address()));
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }

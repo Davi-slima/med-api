@@ -8,6 +8,7 @@ import med.voll.api.domain.Address;
 @Setter
 public class Patient {
 
+    private Long id;
     private String name;
     private String email;
     private String phoneNumber;
@@ -15,7 +16,8 @@ public class Patient {
     private boolean active;
     private Address address;
 
-    public Patient(String name, String email, String phoneNumber, String cpf, boolean active, Address address) {
+    public Patient(Long id, String name, String email, String phoneNumber, String cpf, boolean active, Address address) {
+        this.id = id;
         this.cpfValidate(cpf);
         this.name = name;
         this.email = email;

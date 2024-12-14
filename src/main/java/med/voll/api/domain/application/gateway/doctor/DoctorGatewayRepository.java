@@ -4,7 +4,7 @@ import med.voll.api.domain.entities.Doctor;
 
 import java.util.List;
 
-public interface DoctorGatwayRepository {
+public interface DoctorGatewayRepository {
 
     Doctor createDoctor(Doctor doctor);
 

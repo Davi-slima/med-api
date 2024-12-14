@@ -39,7 +39,7 @@ public class DoctorJpaRepositoryTest {
         Address address = new Address("xxxx", "yyyy",
                 "09123456", "Osasco", "SP", "10", "xxx");
 
-        doctor = new Doctor("Júnior Lima",
+        doctor = new Doctor(1L, "Júnior Lima",
                 "teste@email.com.br", "11901234567",
                 "12345678", Specialty.DERMATOLOGIA, address, true);
 
@@ -75,7 +75,7 @@ public class DoctorJpaRepositoryTest {
         List<DoctorEntity> entities = List.of(doctorEntity);
         when(repository.findAll()).thenReturn(entities);
 
-        when(mapper.toDomain(doctorEntity)).thenReturn(new Doctor("Alice", "alice@example.com", "11999999999", "123", Specialty.DERMATOLOGIA, null, true));
+        when(mapper.toDomain(doctorEntity)).thenReturn(new Doctor(1L,"Alice", "alice@example.com", "11999999999", "123", Specialty.DERMATOLOGIA, null, true));
 
         List<Doctor> response = jpaRepository.listAllDoctors(0);
 

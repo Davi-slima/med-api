@@ -11,7 +11,7 @@ public class DoctorTest {
     void shouldCreateDoctor() {
         Address address = new Address("xxxx", "yyyy", "123456789", "teste", "SP", "01","Teste");
 
-        Doctor doctor = new Doctor("Júnior Lima", "junior.lima@email.com",
+        Doctor doctor = new Doctor(1L, "Júnior Lima", "junior.lima@email.com",
                 "11900000000", "12345678", Specialty.DERMATOLOGIA,address,
                 true);
 
