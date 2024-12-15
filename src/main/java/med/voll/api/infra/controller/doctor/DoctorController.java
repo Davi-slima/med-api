@@ -58,7 +58,8 @@ public class DoctorController {
     }
 
     @DeleteMapping("/{crm}")
-    public void deleteDoctor(@PathVariable String crm) {
+    public ResponseEntity<Void> deleteDoctor(@PathVariable String crm) {
         deleteDoctor.deleteDoctor(crm);
+        return ResponseEntity.noContent().build();
     }
 }

@@ -1,5 +1,6 @@
 package med.voll.api.infra.controller.appointment;
 
+import med.voll.api.domain.application.usecases.appointment.CancelAppointment;
 import med.voll.api.domain.application.usecases.appointment.CreateAppointment;
 import med.voll.api.domain.application.usecases.appointment.EndAppointment;
 import med.voll.api.domain.application.usecases.appointment.ListAllApointments;
@@ -20,21 +21,23 @@ public class AppointmentController {
     private final CreateAppointment createAppointment;
     private final EndAppointment endAppointment;
     private final ListAllApointments listAllApointments;
+    private final CancelAppointment cancelAppointment;
 
-    public AppointmentController(CreateAppointment createAppointment, EndAppointment endAppointment, ListAllApointments listAllApointments) {
+    public AppointmentController(CreateAppointment createAppointment, EndAppointment endAppointment, ListAllApointments listAllApointments, CancelAppointment cancelAppointment) {
         this.createAppointment = createAppointment;
         this.endAppointment = endAppointment;
         this.listAllApointments = listAllApointments;
+        this.cancelAppointment = cancelAppointment;
     }
 
     @PostMapping
-    public AppointmentDTO createScheduling(@RequestBody AppointmentRequestDTO request) throws ChangeSetPersister.NotFoundException {
+    public ResponseEntity<AppointmentDTO> createScheduling(@RequestBody AppointmentRequestDTO request) throws ChangeSetPersister.NotFoundException {
         Appointment appointment = createAppointment.CreateAppointment(new Appointment(null, request.doctorId(),
                 request.patientId(), request.dateTime(), null));
 
-        return new AppointmentDTO(appointment.getAppointmentId(),
+        return ResponseEntity.ok(new AppointmentDTO(appointment.getAppointmentId(),
                 appointment.getDoctorId(), appointment.getPatientId(),
-                appointment.getDateTime(), appointment.getStatus());
+                appointment.getDateTime(), appointment.getStatus()));
     }
 
     @GetMapping
@@ -52,5 +55,10 @@ public class AppointmentController {
         return ResponseEntity.noContent().build();
     }
 
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> cancelAppointment(@PathVariable Long id) throws ChangeSetPersister.NotFoundException {
+        cancelAppointment.cancelAppointment(id);
+        return ResponseEntity.noContent().build();
+    }
 
 }

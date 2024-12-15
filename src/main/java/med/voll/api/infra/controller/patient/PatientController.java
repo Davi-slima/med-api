@@ -56,8 +56,9 @@ public class PatientController {
     }
 
     @DeleteMapping("/{cpf}")
-    public void removePaciente(@PathVariable String cpf) {
+    public ResponseEntity<Void> removePaciente(@PathVariable String cpf) {
         deletePatient.deletePatient(cpf);
+        return ResponseEntity.noContent().build();
     }
 
 }

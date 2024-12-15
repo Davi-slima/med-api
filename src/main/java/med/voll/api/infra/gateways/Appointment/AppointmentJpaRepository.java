@@ -62,7 +62,13 @@ public class AppointmentJpaRepository implements AppointmentGatewayRepository {
     }
 
     @Override
-    public void cancelAppointment(Long id) {
+    public void cancelAppointment(Long id) throws ChangeSetPersister.NotFoundException {
+        AppointmentEntity entity = repository.findById(id)
+                .orElseThrow(ChangeSetPersister.NotFoundException::new);
+
+        entity.setStatus(Status.CANCELLED);
+        repository.save(entity);
+        mapper.toDomain(entity);
 
     }
 

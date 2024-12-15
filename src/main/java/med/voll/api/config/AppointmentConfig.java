@@ -1,6 +1,7 @@
 package med.voll.api.config;
 
 import med.voll.api.domain.application.gateway.appointment.AppointmentGatewayRepository;
+import med.voll.api.domain.application.usecases.appointment.CancelAppointment;
 import med.voll.api.domain.application.usecases.appointment.CreateAppointment;
 import med.voll.api.domain.application.usecases.appointment.EndAppointment;
 import med.voll.api.domain.application.usecases.appointment.ListAllApointments;
@@ -28,6 +29,11 @@ public class AppointmentConfig {
     @Bean
     ListAllApointments getAppointments(AppointmentGatewayRepository repository) {
         return new ListAllApointments(repository);
+    }
+
+    @Bean
+    CancelAppointment cancelAppointment(AppointmentGatewayRepository repository) {
+        return new CancelAppointment(repository);
     }
 
     @Bean

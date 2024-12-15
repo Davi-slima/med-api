@@ -10,6 +10,6 @@ public interface AppointmentGatewayRepository {
     Appointment createAppointment(Appointment appointment) throws ChangeSetPersister.NotFoundException;
     void endAppointment (Appointment appointment) throws ChangeSetPersister.NotFoundException;
     List<Appointment> listAllAppointment(int page);
-    void cancelAppointment(Long id);
+    void cancelAppointment(Long id) throws ChangeSetPersister.NotFoundException;
 
 }
