@@ -1,8 +1,7 @@
-package med.voll.api.domain.application.usecases;
+package med.voll.api.domain.application.usecases.doctor;
 
 import med.voll.api.domain.Address;
 import med.voll.api.domain.application.gateway.doctor.DoctorGatewayRepository;
-import med.voll.api.domain.application.usecases.doctor.UpdateDoctor;
 import med.voll.api.domain.entities.Doctor;
 import med.voll.api.enums.Specialty;
 import org.junit.jupiter.api.Assertions;
@@ -13,7 +12,7 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
-public class UpdateDoctorTest {
+class UpdateDoctorTest {
 
     @Mock
     private DoctorGatewayRepository doctorGatewayRepository;

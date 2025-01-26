@@ -5,7 +5,7 @@ import med.voll.api.enums.Specialty;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-public class DoctorTest {
+class DoctorTest {
 
     @Test
     void shouldCreateDoctor() {

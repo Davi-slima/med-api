@@ -1,4 +1,4 @@
-package med.voll.api.infra.gatways;
+package med.voll.api.infra.gatways.doctor;
 
 import med.voll.api.domain.Address;
 import med.voll.api.domain.entities.Doctor;
@@ -19,7 +19,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.mockito.Mockito.*;
 
-public class DoctorJpaRepositoryTest {
+class DoctorJpaRepositoryTest {
 
     @Mock
     private DoctorRepository repository;

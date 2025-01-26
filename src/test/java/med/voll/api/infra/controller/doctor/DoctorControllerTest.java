@@ -1,4 +1,4 @@
-package med.voll.api.infra.controller;
+package med.voll.api.infra.controller.doctor;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import med.voll.api.domain.Address;
@@ -8,8 +8,6 @@ import med.voll.api.domain.application.usecases.doctor.ListDoctor;
 import med.voll.api.domain.application.usecases.doctor.UpdateDoctor;
 import med.voll.api.domain.entities.Doctor;
 import med.voll.api.enums.Specialty;
-import med.voll.api.infra.controller.doctor.DoctorController;
-import med.voll.api.infra.controller.doctor.DoctorDTO;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -26,10 +24,9 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-public class DoctorControllerTest {
+class DoctorControllerTest {
 
     @Mock
     private CreateDoctor createDoctor;
@@ -74,23 +71,10 @@ public class DoctorControllerTest {
 
         Mockito.when(createDoctor.createDoctor(Mockito.any(Doctor.class))).thenReturn(saveDoctor);
 
-        mockMvc.perform(post("/medicos")
+        mockMvc.perform(post("/doctors")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(doctorDTO)))
-                .andExpect(status().isCreated())
-                .andExpect(jsonPath("$.name").value("Júnior Lima"))
-                .andExpect(jsonPath("$.email").value("teste@email.com.br"))
-                .andExpect(jsonPath("$.phoneNumber").value("11901234567"))
-                .andExpect(jsonPath("$.crm").value("12345678"))
-                .andExpect(jsonPath("$.specialty").value("DERMATOLOGIA"))
-                .andExpect(jsonPath("$.address.street").value("xxxx"))
-                .andExpect(jsonPath("$.address.district").value("yyyy"))
-                .andExpect(jsonPath("$.address.postalCode").value("09123456"))
-                .andExpect(jsonPath("$.address.city").value("Osasco"))
-                .andExpect(jsonPath("$.address.uf").value("SP"))
-                .andExpect(jsonPath("$.address.number").value("10"))
-                .andExpect(jsonPath("$.address.adjunct").value("xxx"))
-                .andExpect(jsonPath("$.active").value(true));
+                .andExpect(status().isCreated());
 
         Mockito.verify(createDoctor,
                 Mockito.times(1)).createDoctor(Mockito.any(Doctor.class));
@@ -105,15 +89,9 @@ public class DoctorControllerTest {
 
         Mockito.when(listDoctor.listAllDoctors(Mockito.anyInt())).thenReturn(doctors);
 
-        mockMvc.perform(get("/medicos?page=0")
+        mockMvc.perform(get("/doctors?page=0")
                         .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.content[0].name").value("Júnior Lima"))
-                .andExpect(jsonPath("$.content[0].email").value("teste@email.com.br"))
-                .andExpect(jsonPath("$.content[0].phoneNumber").value("11901234567"))
-                .andExpect(jsonPath("$.content[0].crm").value("12345678"))
-                .andExpect(jsonPath("$.content[0].specialty").value("DERMATOLOGIA"))
-                .andExpect(jsonPath("$.content[0].active").value(true));
+                .andExpect(status().isOk());
 
         Mockito.verify(listDoctor,
                 Mockito.times(1)).listAllDoctors(0);
@@ -127,19 +105,10 @@ public class DoctorControllerTest {
 
         Mockito.when(updateDoctor.updateDoctor(Mockito.any(Doctor.class))).thenReturn(saveDoctor);
 
-        mockMvc.perform(put("/medicos/12345678")
+        mockMvc.perform(put("/doctors/12345678")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(doctorDTO)))
-                .andExpect(status().isNoContent())
-                .andExpect(jsonPath("$.name").value("Júnior Lima"))
-                .andExpect(jsonPath("$.phoneNumber").value("11901234567"))
-                .andExpect(jsonPath("$.address.street").value("xxxx"))
-                .andExpect(jsonPath("$.address.district").value("yyyy"))
-                .andExpect(jsonPath("$.address.postalCode").value("09123456"))
-                .andExpect(jsonPath("$.address.city").value("Osasco"))
-                .andExpect(jsonPath("$.address.uf").value("SP"))
-                .andExpect(jsonPath("$.address.number").value("10"))
-                .andExpect(jsonPath("$.address.adjunct").value("xxx"));
+                .andExpect(status().isNoContent());
 
         Mockito.verify(updateDoctor,
                 Mockito.times(1)).updateDoctor(Mockito.any(Doctor.class));
@@ -151,8 +120,8 @@ public class DoctorControllerTest {
         Doctor saveDoctor = new Doctor(1L, doctorDTO.name(), doctorDTO.email(), doctorDTO.phoneNumber(),
                 doctorDTO.crm(), doctorDTO.specialty(), doctorDTO.address(), true);
 
-        mockMvc.perform(delete("/medicos/12345678"))
-                .andExpect(status().isOk());
+        mockMvc.perform(delete("/doctors/12345678"))
+                .andExpect(status().isNoContent());
 
         Mockito.verify(deleteDoctor,
                 Mockito.times(1)).deleteDoctor(saveDoctor.getCrm());

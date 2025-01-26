@@ -1,4 +1,4 @@
-package med.voll.api.infra.gatways;
+package med.voll.api.infra.gatways.doctor;
 
 import med.voll.api.domain.Address;
 import med.voll.api.domain.entities.Doctor;
